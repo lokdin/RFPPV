@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFP Received</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #000;
+            text-align: center;
+            padding: 20px;
+        }
+        .btn-submit {
+            background-color: #1e90ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>RFP Received</h1>
+<p>Thank You! We have received your request and will get back to you shortly.</p>
+<a href="form.html" class="btn-submit">Submit Another RFP</a>
+
+</body>
+</html>
