@@ -151,56 +151,52 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="january-usage">January Usage</label>
-        <input type="text" id="january-usage" name="januaryUsage">
-    </div>
-    <div class="form-group">
         <label for="january">January</label>
-        <input type="text" id="january" name="january">
+        <input type="number" id="january" name="january">
     </div>
     <div class="form-group">
         <label for="february">February</label>
-        <input type="text" id="february" name="february">
+        <input type="number" id="february" name="february">
     </div>
     <div class="form-group">
         <label for="march">March</label>
-        <input type="text" id="march" name="march">
+        <input type="number" id="march" name="march">
     </div>
     <div class="form-group">
         <label for="april">April</label>
-        <input type="text" id="april" name="april">
+        <input type="number" id="april" name="april">
     </div>
     <div class="form-group">
         <label for="may">May</label>
-        <input type="text" id="may" name="may">
+        <input type="number" id="may" name="may">
     </div>
     <div class="form-group">
         <label for="june">June</label>
-        <input type="text" id="june" name="june">
+        <input type="number" id="june" name="june">
     </div>
     <div class="form-group">
         <label for="july">July</label>
-        <input type="text" id="july" name="july">
+        <input type="number" id="july" name="july">
     </div>
     <div class="form-group">
         <label for="august">August</label>
-        <input type="text" id="august" name="august">
+        <input type="number" id="august" name="august">
     </div>
     <div class="form-group">
         <label for="september">September</label>
-        <input type="text" id="september" name="september">
+        <input type="number" id="september" name="september">
     </div>
     <div class="form-group">
         <label for="october">October</label>
-        <input type="text" id="october" name="october">
+        <input type="number" id="october" name="october">
     </div>
     <div class="form-group">
         <label for="november">November</label>
-        <input type="text" id="november" name="november">
+        <input type="number" id="november" name="november">
     </div>
     <div class="form-group">
         <label for="december">December</label>
-        <input type="text" id="december" name="december">
+        <input type="number" id="december" name="december">
     </div>
     <button type="submit" class="btn-submit">Submit</button>
 </form>
@@ -286,8 +282,18 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
-            .then(data => alert(data))
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'confirmation.html'; // Redirect to confirmation page
+                } else {
+                    return response.text();
+                }
+            })
+            .then(data => {
+                if (data) {
+                    alert('Error: ' + data);
+                }
+            })
             .catch(error => console.error('Error:', error));
         });
     });
