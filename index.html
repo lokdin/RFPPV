@@ -146,31 +146,30 @@
                 });
             }
         }
-        
- // Handle form submission
-document.getElementById('rfp-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    
-    // Perform the fetch request
-    fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        // Optionally log the response or handle it as needed
-        console.log('Fetch response:', response);
-        // Proceed to redirect regardless of response
-        window.location.href = 'confirmation.html';
-    })
-    .catch(error => {
-        // Optionally log any errors
-        console.error('Error:', error);
-        // Redirect anyway
-        window.location.href = 'confirmation.html';
-    });
-});
 
+        // Handle form submission
+        document.getElementById('rfp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'confirmation.html'; // Redirect to confirmation page
+                } else {
+                    return response.text();
+                }
+            })
+            .then(data => {
+                if (data) {
+                    alert('Error: ' + data);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
 </script>
 
 </body>
