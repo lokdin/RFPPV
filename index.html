@@ -43,6 +43,7 @@
             cursor: pointer;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
 
@@ -86,7 +87,7 @@
     <div class="form-group">
         <label for="city">Nearest City <span class="required">*</span></label>
         <select id="city" name="city" required>
-            <!-- Options will be populated dynamically -->
+            <!-- Options will be populated dynamically based on state selection -->
         </select>
     </div>
     <div class="form-group">
@@ -156,43 +157,90 @@
 </form>
 
 <script>
-    // Populate the state dropdown
-    const states = [...new Set([${[...df['State'].map(state => `'${state}'`)].join(', ')}])].sort();
-    const stateDropdown = document.getElementById('state');
-    states.forEach(state => {
-        const option = document.createElement('option');
-        option.value = state;
-        option.text = state;
-        stateDropdown.add(option);
-    });
+    document.addEventListener('DOMContentLoaded', () => {
+        // Define the URL of your CSV file
+        const csvUrl = 'https://lckdin-files.s3.us-east-2.amazonaws.com/App/City_State+-+Sheet1+(2).csv';
 
-    // Populate the city dropdown based on selected state
-    const stateCityMap = ${JSON.stringify(df.groupby(['State'])['City'].apply(list).to_dict())};
-    stateDropdown.addEventListener('change', function() {
-        const selectedState = this.value;
-        const cityDropdown = document.getElementById('city');
-        cityDropdown.innerHTML = ''; // Clear existing options
-        if (selectedState in stateCityMap) {
-            stateCityMap[selectedState].forEach(city => {
+        // Create a map to hold city data by state
+        const stateCityMap = {};
+
+        // Load and parse the CSV file
+        Papa.parse(csvUrl, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                results.data.forEach(row => {
+                    const state = row.State;
+                    const city = row.City;
+
+                    if (!stateCityMap[state]) {
+                        stateCityMap[state] = [];
+                    }
+                    stateCityMap[state].push(city);
+                });
+
+                // Populate the state dropdown
+                populateStateDropdown();
+            }
+        });
+
+        // Function to populate the state dropdown
+        function populateStateDropdown() {
+            const states = [
+                "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+                "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+                "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+                "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+                "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+                "New Hampshire", "New Jersey", "New Mexico", "New York",
+                "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+                "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+                "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
+                "Washington", "West Virginia", "Wisconsin", "Wyoming"
+            ];
+
+            const stateDropdown = document.getElementById('state');
+            states.forEach(state => {
                 const option = document.createElement('option');
-                option.value = city;
-                option.text = city;
-                cityDropdown.add(option);
+                option.value = state;
+                option.text = state;
+                stateDropdown.add(option);
+            });
+
+            // Add event listener to update cities based on selected state
+            stateDropdown.addEventListener('change', function() {
+                const selectedState = this.value;
+                populateCityDropdown(selectedState);
             });
         }
-    });
 
-    // Handle form submission
-    document.getElementById('rfp-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', { // Input the actual web app URL
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => alert(data))
-        .catch(error => console.error('Error:', error));
+        // Function to populate the city dropdown based on the selected state
+        function populateCityDropdown(state) {
+            const cityDropdown = document.getElementById('city');
+            cityDropdown.innerHTML = ''; // Clear existing options
+
+            if (stateCityMap[state]) {
+                stateCityMap[state].forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.text = city;
+                    cityDropdown.add(option);
+                });
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('rfp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', { // Input the actual web app URL
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        });
     });
 </script>
 
