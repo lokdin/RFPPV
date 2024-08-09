@@ -50,154 +50,27 @@
 <h1>Request for Proposal (Commercial PV)</h1>
 
 <form id="rfp-form">
+    <!-- Form Fields -->
     <div class="form-group">
         <label for="rep-name">Rep Name <span class="required">*</span></label>
         <input type="text" id="rep-name" name="repName" required>
     </div>
+    <!-- Additional Form Fields -->
+    <!-- State Dropdown -->
     <div class="form-group">
-        <label for="rep-email">Rep Email <span class="required">*</span></label>
-        <input type="email" id="rep-email" name="repEmail" required>
-    </div>
-    <div class="form-group">
-        <label for="customer-name">Customer Name (POC)</label>
-        <input type="text" id="customer-name" name="customerName">
-    </div>
-    <div class="form-group">
-        <label for="company-name">Company Name <span class="required">*</span></label>
-        <input type="text" id="company-name" name="companyName" required>
-    </div>
-    <div class="form-group">
-        <label for="company-email">Email <span class="required">*</span> <span class="optional">(optional)</span></label>
-        <input type="email" id="company-email" name="companyEmail">
-    </div>
-    <div class="form-group">
-        <label for="company-phone">Phone <span class="required">*</span> <span class="optional">(optional)</span></label>
-        <input type="text" id="company-phone" name="companyPhone">
-    </div>
-    <div class="form-group">
-        <label for="company-address">Company Address <span class="required">*</span></label>
-        <input type="text" id="company-address" name="companyAddress" required>
-    </div>
-    <div class="form-group">
+        <label for="state">State <span class="required">*</span></label>
         <select id="state" name="state" required>
-            <option value="Alabama">Alabama</option>
-            <option value="Alaska">Alaska</option>
-            <option value="Arizona">Arizona</option>
-            <option value="Arkansas">Arkansas</option>
-            <option value="California">California</option>
-            <option value="Colorado">Colorado</option>
-            <option value="Connecticut">Connecticut</option>
-            <option value="Delaware">Delaware</option>
-            <option value="Florida">Florida</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Hawaii">Hawaii</option>
-            <option value="Idaho">Idaho</option>
-            <option value="Illinois">Illinois</option>
-            <option value="Indiana">Indiana</option>
-            <option value="Iowa">Iowa</option>
-            <option value="Kansas">Kansas</option>
-            <option value="Kentucky">Kentucky</option>
-            <option value="Louisiana">Louisiana</option>
-            <option value="Maine">Maine</option>
-            <option value="Maryland">Maryland</option>
-            <option value="Massachusetts">Massachusetts</option>
-            <option value="Michigan">Michigan</option>
-            <option value="Minnesota">Minnesota</option>
-            <option value="Mississippi">Mississippi</option>
-            <option value="Missouri">Missouri</option>
-            <option value="Montana">Montana</option>
-            <option value="Nebraska">Nebraska</option>
-            <option value="Nevada">Nevada</option>
-            <option value="New Hampshire">New Hampshire</option>
-            <option value="New Jersey">New Jersey</option>
-            <option value="New Mexico">New Mexico</option>
-            <option value="New York">New York</option>
-            <option value="North Carolina">North Carolina</option>
-            <option value="North Dakota">North Dakota</option>
-            <option value="Ohio">Ohio</option>
-            <option value="Oklahoma">Oklahoma</option>
-            <option value="Oregon">Oregon</option>
-            <option value="Pennsylvania">Pennsylvania</option>
-            <option value="Rhode Island">Rhode Island</option>
-            <option value="South Carolina">South Carolina</option>
-            <option value="South Dakota">South Dakota</option>
-            <option value="Tennessee">Tennessee</option>
-            <option value="Texas">Texas</option>
-            <option value="Utah">Utah</option>
-            <option value="Vermont">Vermont</option>
-            <option value="Virginia">Virginia</option>
-            <option value="Washington">Washington</option>
-            <option value="West Virginia">West Virginia</option>
-            <option value="Wisconsin">Wisconsin</option>
-            <option value="Wyoming">Wyoming</option>
-            <!-- Options will be populated dynamically -->
+            <!-- Options populated dynamically -->
         </select>
     </div>
+    <!-- City Dropdown -->
     <div class="form-group">
         <label for="city">Nearest City <span class="required">*</span></label>
         <select id="city" name="city" required>
-            <!-- Options will be populated dynamically based on state selection -->
+            <!-- Options populated dynamically based on state selection -->
         </select>
     </div>
-    <div class="form-group">
-        <label for="install-location">Install Location (Coordinates) <span class="optional">(optional)</span></label>
-        <input type="text" id="install-location" name="installLocation">
-    </div>
-    <div class="form-group">
-        <label for="usage-type">Usage Type</label>
-        <select id="usage-type" name="usageType">
-            <option value="monthly">Monthly</option>
-            <option value="daily">Daily</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="january">January</label>
-        <input type="number" id="january" name="january">
-    </div>
-    <div class="form-group">
-        <label for="february">February</label>
-        <input type="number" id="february" name="february">
-    </div>
-    <div class="form-group">
-        <label for="march">March</label>
-        <input type="number" id="march" name="march">
-    </div>
-    <div class="form-group">
-        <label for="april">April</label>
-        <input type="number" id="april" name="april">
-    </div>
-    <div class="form-group">
-        <label for="may">May</label>
-        <input type="number" id="may" name="may">
-    </div>
-    <div class="form-group">
-        <label for="june">June</label>
-        <input type="number" id="june" name="june">
-    </div>
-    <div class="form-group">
-        <label for="july">July</label>
-        <input type="number" id="july" name="july">
-    </div>
-    <div class="form-group">
-        <label for="august">August</label>
-        <input type="number" id="august" name="august">
-    </div>
-    <div class="form-group">
-        <label for="september">September</label>
-        <input type="number" id="september" name="september">
-    </div>
-    <div class="form-group">
-        <label for="october">October</label>
-        <input type="number" id="october" name="october">
-    </div>
-    <div class="form-group">
-        <label for="november">November</label>
-        <input type="number" id="november" name="november">
-    </div>
-    <div class="form-group">
-        <label for="december">December</label>
-        <input type="number" id="december" name="december">
-    </div>
+    <!-- Additional Form Fields -->
     <button type="submit" class="btn-submit">Submit</button>
 </form>
 
@@ -278,7 +151,7 @@
         document.getElementById('rfp-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', { // Input the actual web app URL
+            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', {
                 method: 'POST',
                 body: formData
             })
