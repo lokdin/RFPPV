@@ -167,7 +167,7 @@
 </form>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     // Define the URL of your CSV file
     const csvUrl = 'https://lckdin-files.s3.us-east-2.amazonaws.com/App/City_State+-+Sheet1+(3).csv';
 
@@ -201,7 +201,10 @@
         const stateSelect = document.getElementById('state');
         stateSelect.innerHTML = ''; // Clear previous options
 
-        statesSet.forEach(state => {
+        // Convert the Set to an Array and sort alphabetically
+        const sortedStates = Array.from(statesSet).sort();
+
+        sortedStates.forEach(state => {
             const option = document.createElement('option');
             option.value = state;
             option.textContent = state;
@@ -220,7 +223,10 @@
         citySelect.innerHTML = ''; // Clear previous options
 
         if (stateCityMap[state]) {
-            stateCityMap[state].forEach(city => {
+            // Sort cities alphabetically
+            const sortedCities = stateCityMap[state].sort();
+
+            sortedCities.forEach(city => {
                 const option = document.createElement('option');
                 option.value = city;
                 option.textContent = city;
@@ -229,6 +235,7 @@
         }
     }
 });
+
 
 
         // Function to generate a hash from input strings
