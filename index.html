@@ -7,12 +7,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #000;
+            background-color: #000000;
+            color: #fff;
             padding: 20px;
         }
         h1 {
-            color: #1e90ff;
+            color: #ffffff;
         }
         .form-group {
             margin-bottom: 15px;
@@ -25,7 +25,7 @@
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
-            border: 1px solid #ccc;
+            border: 1px solid #212120;
             border-radius: 4px;
         }
         .required {
@@ -35,7 +35,7 @@
             color: gray;
         }
         .btn-submit, .btn-new, .btn-dashboard {
-            background-color: #1e90ff;
+            background-color: #212120;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -62,7 +62,156 @@
         <label for="rep-email">Rep Email <span class="required">*</span></label>
         <input type="email" id="rep-email" name="repEmail" required>
     </div>
-    <!-- Other form fields -->
+    <div class="form-group">
+        <label for="customer-name">Customer Name (POC)</label>
+        <input type="text" id="customer-name" name="customerName">
+    </div>
+    <div class="form-group">
+        <label for="company-name">Company Name <span class="required">*</span></label>
+        <input type="text" id="company-name" name="companyName" required>
+    </div>
+    <div class="form-group">
+        <label for="company-email">Email <span class="required">*</span> <span class="optional">(Phone or Email is required for tracking)</span></label>
+        <input type="email" id="company-email" name="companyEmail">
+    </div>
+    <div class="form-group">
+        <label for="company-phone">Phone <span class="required">*</span> <span class="optional">(Phone or Email is required for tracking)</span></label>
+        <input type="text" id="company-phone" name="companyPhone">
+    </div>
+    <div class="form-group">
+        <label for="company-address">Company Address <span class="required">*</span></label>
+        <input type="text" id="company-address" name="companyAddress" required>
+    </div>
+    <div class="form-group">
+        <select id="state" name="state" required>
+            <option value="Alabama">Alabama</option>
+            <option value="Alaska">Alaska</option>
+            <option value="Arizona">Arizona</option>
+            <option value="Arkansas">Arkansas</option>
+            <option value="California">California</option>
+            <option value="Colorado">Colorado</option>
+            <option value="Connecticut">Connecticut</option>
+            <option value="Delaware">Delaware</option>
+            <option value="Florida">Florida</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Hawaii">Hawaii</option>
+            <option value="Idaho">Idaho</option>
+            <option value="Illinois">Illinois</option>
+            <option value="Indiana">Indiana</option>
+            <option value="Iowa">Iowa</option>
+            <option value="Kansas">Kansas</option>
+            <option value="Kentucky">Kentucky</option>
+            <option value="Louisiana">Louisiana</option>
+            <option value="Maine">Maine</option>
+            <option value="Maryland">Maryland</option>
+            <option value="Massachusetts">Massachusetts</option>
+            <option value="Michigan">Michigan</option>
+            <option value="Minnesota">Minnesota</option>
+            <option value="Mississippi">Mississippi</option>
+            <option value="Missouri">Missouri</option>
+            <option value="Montana">Montana</option>
+            <option value="Nebraska">Nebraska</option>
+            <option value="Nevada">Nevada</option>
+            <option value="New Hampshire">New Hampshire</option>
+            <option value="New Jersey">New Jersey</option>
+            <option value="New Mexico">New Mexico</option>
+            <option value="New York">New York</option>
+            <option value="North Carolina">North Carolina</option>
+            <option value="North Dakota">North Dakota</option>
+            <option value="Ohio">Ohio</option>
+            <option value="Oklahoma">Oklahoma</option>
+            <option value="Oregon">Oregon</option>
+            <option value="Pennsylvania">Pennsylvania</option>
+            <option value="Rhode Island">Rhode Island</option>
+            <option value="South Carolina">South Carolina</option>
+            <option value="South Dakota">South Dakota</option>
+            <option value="Tennessee">Tennessee</option>
+            <option value="Texas">Texas</option>
+            <option value="Utah">Utah</option>
+            <option value="Vermont">Vermont</option>
+            <option value="Virginia">Virginia</option>
+            <option value="Washington">Washington</option>
+            <option value="West Virginia">West Virginia</option>
+            <option value="Wisconsin">Wisconsin</option>
+            <option value="Wyoming">Wyoming</option>
+<!-- City Options will be populated dynamically -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="city">Nearest City <span class="required">*</span></label>
+        <select id="city" name="city" required>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="install-location">Install Location (Coordinates) <span class="optional">(Required if different than Address)</span></label>
+        <input type="text" id="install-location" name="installLocation">
+    </div>
+    <div class="form-group">
+        <label for="usage-type">Usage Type</label>
+        <select id="usage-type" name="usageType">
+            <option value="monthly">Monthly</option>
+            <option value="daily">Daily</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="january">January</label>
+        <input type="number" id="january" name="january">
+    </div>
+    <div class="form-group">
+        <label for="february">February</label>
+        <input type="number" id="february" name="february">
+    </div>
+    <div class="form-group">
+        <label for="march">March</label>
+        <input type="number" id="march" name="march">
+    </div>
+    <div class="form-group">
+        <label for="april">April</label>
+        <input type="number" id="april" name="april">
+    </div>
+    <div class="form-group">
+        <label for="may">May</label>
+        <input type="number" id="may" name="may">
+    </div>
+    <div class="form-group">
+        <label for="june">June</label>
+        <input type="number" id="june" name="june">
+    </div>
+    <div class="form-group">
+        <label for="july">July</label>
+        <input type="number" id="july" name="july">
+    </div>
+    <div class="form-group">
+        <label for="august">August</label>
+        <input type="number" id="august" name="august">
+    </div>
+    <div class="form-group">
+        <label for="september">September</label>
+        <input type="number" id="september" name="september">
+    </div>
+    <div class="form-group">
+        <label for="october">October</label>
+        <input type="number" id="october" name="october">
+    </div>
+    <div class="form-group">
+        <label for="november">November</label>
+        <input type="number" id="november" name="november">
+    </div>
+    <div class="form-group">
+        <label for="december">December</label>
+        <input type="number" id="december" name="december">
+    </div>
+    <button type="submit" class="btn-submit">Submit</button>
+    <div class="form-group">
+        <label for="rfp-delivery-date">RFP Delivery Date</label>
+        <input type="datetime-local" 
+               id="rfp-delivery-date1" 
+               min="2024-01-01T00:00" 
+               max="2050-12-31T23:59" 
+               step="1">
+    </div>
+    <button type="submit" class="btn-submit">Submit</button>
+</form>
     <button type="submit" class="btn-submit">Submit</button>
     <button type="button" class="btn-new hidden" id="btn-new">Submit another</button>
     <button type="button" class="btn-dashboard hidden" id="btn-dashboard">Dashboard</button>
@@ -75,16 +224,16 @@
         const newBtn = document.getElementById('btn-new');
         const dashboardBtn = document.getElementById('btn-dashboard');
 
-        // Load rep name and email from cookies if available
+// Auto-Fill rep name and email from cookies if available
         document.getElementById('rep-name').value = getCookie('repName') || '';
         document.getElementById('rep-email').value = getCookie('repEmail') || '';
 
-        // Handle form submission
+// Form submission
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
 
-            // Save rep name and email to cookies
+// Save rep name and email to cookies
             setCookie('repName', document.getElementById('rep-name').value, 7);
             setCookie('repEmail', document.getElementById('rep-email').value, 7);
 
@@ -110,7 +259,7 @@
             .catch(error => console.error('Error:', error));
         });
 
-        // Handle "Submit another" button click
+// Handle "Submit another" button click
         newBtn.addEventListener('click', function() {
             form.reset();
             document.getElementById('rep-name').value = getCookie('repName') || '';
@@ -125,7 +274,7 @@
             window.location.href = 'dashboard.html';
         });
 
-        // Functions to manage cookies
+// Functions to manage cookies
         function setCookie(name, value, days) {
             let expires = "";
             if (days) {
