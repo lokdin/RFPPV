@@ -171,18 +171,16 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Define the URL of your CSV file
     const csvUrl = 'https://lckdin-files.s3.us-east-2.amazonaws.com/App/City_State+-+Sheet1+(3).csv';
-
-    // Create a map to hold city data by state
     const stateCityMap = {};
-    const statesSet = new Set(); // To ensure unique states
+    const statesSet = new Set();
 
     // Load and parse the CSV file
     Papa.parse(csvUrl, {
         download: true,
         header: true,
         complete: function(results) {
+            console.log(results.data); // Debugging
             results.data.forEach(row => {
                 const state = row.State;
                 const city = row.City;
@@ -191,10 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     stateCityMap[state] = [];
                 }
                 stateCityMap[state].push(city);
-                statesSet.add(state); // Add state to the set
+                statesSet.add(state);
             });
 
-            // Populate the state dropdown
             populateStateDropdown();
         }
     });
@@ -202,11 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to populate the state dropdown
     function populateStateDropdown() {
         const stateSelect = document.getElementById('state');
-        stateSelect.innerHTML = ''; // Clear previous options
+        stateSelect.innerHTML = '';
 
-        // Convert the Set to an Array and sort alphabetically
         const sortedStates = Array.from(statesSet).sort();
-
         sortedStates.forEach(state => {
             const option = document.createElement('option');
             option.value = state;
@@ -214,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
             stateSelect.appendChild(option);
         });
 
-        // Listen for changes on the state dropdown to populate the city dropdown
         stateSelect.addEventListener('change', function() {
             populateCityDropdown(this.value);
         });
@@ -223,12 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to populate the city dropdown based on the selected state
     function populateCityDropdown(state) {
         const citySelect = $('#city');
-        citySelect.empty(); // Clear previous options
+        citySelect.empty();
 
         if (stateCityMap[state]) {
-            // Sort cities alphabetically
             const sortedCities = stateCityMap[state].sort();
-
             sortedCities.forEach(city => {
                 const option = new Option(city, city, false, false);
                 citySelect.append(option);
@@ -243,50 +235,53 @@ document.addEventListener('DOMContentLoaded', () => {
         placeholder: 'Select a city',
         allowClear: true
     });
-        // Function to generate a hash from input strings
-        function generateHash(input) {
-            return CryptoJS.MD5(input).toString(CryptoJS.enc.Hex).substring(0, 5);
-        }
 
-        // Listen for form submission
-        const form = document.getElementById('rfp-form');
-        form.addEventListener('submit', async function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
+    // Function to generate a hash from input strings
+    function generateHash(input) {
+        return CryptoJS.MD5(input).toString(CryptoJS.enc.Hex).substring(0, 5);
+    }
 
-            // Get the rep name and email
-            const repName = document.getElementById('rep-name').value;
-            const repEmail = document.getElementById('rep-email').value;
+    // Listen for form submission
+    const form = document.getElementById('rfp-form');
+    form.addEventListener('submit', async function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
 
-            // Get the company name and email
-            const companyName = document.getElementById('company-name').value;
-            const companyEmail = document.getElementById('company-email').value;
+        // Get the rep name and email
+        const repName = document.getElementById('rep-name').value;
+        const repEmail = document.getElementById('rep-email').value;
 
-            // Generate and set the IDs
-            document.getElementById('rep-id').value = generateHash(repName + repEmail);
-            document.getElementById('company-id').value = 'C' + generateHash(companyName + companyEmail);
-            document.getElementById('rfp-id').value = 'R' + generateHash(Date.now().toString());
+        // Get the company name and email
+        const companyName = document.getElementById('company-name').value;
+        const companyEmail = document.getElementById('company-email').value;
 
-            // Prepare form data
-            const formData = new FormData(form);
+        // Generate and set the IDs
+        document.getElementById('rep-id').value = generateHash(repName + repEmail);
+        document.getElementById('company-id').value = 'C' + generateHash(companyName + companyEmail);
+        document.getElementById('rfp-id').value = 'R' + generateHash(Date.now().toString());
 
-            // Send data to the server via POST request
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbyp5fnAHEc_kNyVP0VDCJvzvcNG72djN7_z9VDtgc2IVLKFeTPZBhwpJbpnohEu5AAu/exec', {
-                    method: 'POST',
-                    body: formData
-                });
+        // Prepare form data
+        const formData = new FormData(form);
 
-                const result = await response.text();
+        // Send data to the server via POST request
+        try {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbyp5fnAHEc_kNyVP0VDCJvzvcNG72djN7_z9VDtgc2IVLKFeTPZBhwpJbpnohEu5AAu/exec', {
+                method: 'POST',
+                body: formData
+            });
 
-        if (result === 'Success') {
-            alert('RFP submitted successfully!');
-            window.location.href = 'confirmation.html?message=RFP Received';
-        } else {
+            const result = await response.text();
+
+            if (result === 'Success') {
+                alert('RFP submitted successfully!');
+                window.location.href = 'confirmation.html?message=RFP Received';
+            } else {
+                alert('Failed to submit RFP. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
             alert('Failed to submit RFP. Please try again.');
         }
+    });
 });
 </script>
-
-</body>
-</html>
