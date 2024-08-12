@@ -1,6 +1,3 @@
-Index.html
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,13 +34,17 @@ Index.html
         .optional {
             color: gray;
         }
-        .btn-submit {
+        .btn-submit, .btn-new, .btn-dashboard {
             background-color: #1e90ff;
             color: #fff;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin: 5px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
@@ -61,233 +62,42 @@ Index.html
         <label for="rep-email">Rep Email <span class="required">*</span></label>
         <input type="email" id="rep-email" name="repEmail" required>
     </div>
-    <div class="form-group">
-        <label for="customer-name">Customer Name (POC)</label>
-        <input type="text" id="customer-name" name="customerName">
-    </div>
-    <div class="form-group">
-        <label for="company-name">Company Name <span class="required">*</span></label>
-        <input type="text" id="company-name" name="companyName" required>
-    </div>
-    <div class="form-group">
-        <label for="company-email">Email <span class="required">*</span> <span class="optional">(optional)</span></label>
-        <input type="email" id="company-email" name="companyEmail">
-    </div>
-    <div class="form-group">
-        <label for="company-phone">Phone <span class="required">*</span> <span class="optional">(optional)</span></label>
-        <input type="text" id="company-phone" name="companyPhone">
-    </div>
-    <div class="form-group">
-        <label for="company-address">Company Address <span class="required">*</span></label>
-        <input type="text" id="company-address" name="companyAddress" required>
-    </div>
-    <div class="form-group">
-        <select id="state" name="state" required>
-            <option value="Alabama">Alabama</option>
-            <option value="Alaska">Alaska</option>
-            <option value="Arizona">Arizona</option>
-            <option value="Arkansas">Arkansas</option>
-            <option value="California">California</option>
-            <option value="Colorado">Colorado</option>
-            <option value="Connecticut">Connecticut</option>
-            <option value="Delaware">Delaware</option>
-            <option value="Florida">Florida</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Hawaii">Hawaii</option>
-            <option value="Idaho">Idaho</option>
-            <option value="Illinois">Illinois</option>
-            <option value="Indiana">Indiana</option>
-            <option value="Iowa">Iowa</option>
-            <option value="Kansas">Kansas</option>
-            <option value="Kentucky">Kentucky</option>
-            <option value="Louisiana">Louisiana</option>
-            <option value="Maine">Maine</option>
-            <option value="Maryland">Maryland</option>
-            <option value="Massachusetts">Massachusetts</option>
-            <option value="Michigan">Michigan</option>
-            <option value="Minnesota">Minnesota</option>
-            <option value="Mississippi">Mississippi</option>
-            <option value="Missouri">Missouri</option>
-            <option value="Montana">Montana</option>
-            <option value="Nebraska">Nebraska</option>
-            <option value="Nevada">Nevada</option>
-            <option value="New Hampshire">New Hampshire</option>
-            <option value="New Jersey">New Jersey</option>
-            <option value="New Mexico">New Mexico</option>
-            <option value="New York">New York</option>
-            <option value="North Carolina">North Carolina</option>
-            <option value="North Dakota">North Dakota</option>
-            <option value="Ohio">Ohio</option>
-            <option value="Oklahoma">Oklahoma</option>
-            <option value="Oregon">Oregon</option>
-            <option value="Pennsylvania">Pennsylvania</option>
-            <option value="Rhode Island">Rhode Island</option>
-            <option value="South Carolina">South Carolina</option>
-            <option value="South Dakota">South Dakota</option>
-            <option value="Tennessee">Tennessee</option>
-            <option value="Texas">Texas</option>
-            <option value="Utah">Utah</option>
-            <option value="Vermont">Vermont</option>
-            <option value="Virginia">Virginia</option>
-            <option value="Washington">Washington</option>
-            <option value="West Virginia">West Virginia</option>
-            <option value="Wisconsin">Wisconsin</option>
-            <option value="Wyoming">Wyoming</option>
-            <!-- Options will be populated dynamically -->
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="city">Nearest City <span class="required">*</span></label>
-        <select id="city" name="city" required>
-            <!-- Options will be populated dynamically based on state selection -->
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="install-location">Install Location (Coordinates) <span class="optional">(optional)</span></label>
-        <input type="text" id="install-location" name="installLocation">
-    </div>
-    <div class="form-group">
-        <label for="usage-type">Usage Type</label>
-        <select id="usage-type" name="usageType">
-            <option value="monthly">Monthly</option>
-            <option value="daily">Daily</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="january">January</label>
-        <input type="number" id="january" name="january">
-    </div>
-    <div class="form-group">
-        <label for="february">February</label>
-        <input type="number" id="february" name="february">
-    </div>
-    <div class="form-group">
-        <label for="march">March</label>
-        <input type="number" id="march" name="march">
-    </div>
-    <div class="form-group">
-        <label for="april">April</label>
-        <input type="number" id="april" name="april">
-    </div>
-    <div class="form-group">
-        <label for="may">May</label>
-        <input type="number" id="may" name="may">
-    </div>
-    <div class="form-group">
-        <label for="june">June</label>
-        <input type="number" id="june" name="june">
-    </div>
-    <div class="form-group">
-        <label for="july">July</label>
-        <input type="number" id="july" name="july">
-    </div>
-    <div class="form-group">
-        <label for="august">August</label>
-        <input type="number" id="august" name="august">
-    </div>
-    <div class="form-group">
-        <label for="september">September</label>
-        <input type="number" id="september" name="september">
-    </div>
-    <div class="form-group">
-        <label for="october">October</label>
-        <input type="number" id="october" name="october">
-    </div>
-    <div class="form-group">
-        <label for="november">November</label>
-        <input type="number" id="november" name="november">
-    </div>
-    <div class="form-group">
-        <label for="december">December</label>
-        <input type="number" id="december" name="december">
-    </div>
+    <!-- Other form fields -->
     <button type="submit" class="btn-submit">Submit</button>
+    <button type="button" class="btn-new hidden" id="btn-new">Submit another</button>
+    <button type="button" class="btn-dashboard hidden" id="btn-dashboard">Dashboard</button>
 </form>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Define the URL of your CSV file
-        const csvUrl = 'https://lckdin-files.s3.us-east-2.amazonaws.com/App/City_State+-+Sheet1+(3).csv';
+        const form = document.getElementById('rfp-form');
+        const submitBtn = document.querySelector('.btn-submit');
+        const newBtn = document.getElementById('btn-new');
+        const dashboardBtn = document.getElementById('btn-dashboard');
 
-        // Create a map to hold city data by state
-        const stateCityMap = {};
-
-        // Load and parse the CSV file
-        Papa.parse(csvUrl, {
-            download: true,
-            header: true,
-            complete: function(results) {
-                results.data.forEach(row => {
-                    const state = row.State;
-                    const city = row.City;
-
-                    if (!stateCityMap[state]) {
-                        stateCityMap[state] = [];
-                    }
-                    stateCityMap[state].push(city);
-                });
-
-                // Populate the state dropdown
-                populateStateDropdown();
-            }
-        });
-
-        // Function to populate the state dropdown
-        function populateStateDropdown() {
-            const states = [
-                "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
-                "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
-                "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
-                "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
-                "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
-                "New Hampshire", "New Jersey", "New Mexico", "New York",
-                "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-                "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-                "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
-                "Washington", "West Virginia", "Wisconsin", "Wyoming"
-            ];
-
-            const stateDropdown = document.getElementById('state');
-            states.forEach(state => {
-                const option = document.createElement('option');
-                option.value = state;
-                option.text = state;
-                stateDropdown.add(option);
-            });
-
-            // Add event listener to update cities based on selected state
-            stateDropdown.addEventListener('change', function() {
-                const selectedState = this.value;
-                populateCityDropdown(selectedState);
-            });
-        }
-
-        // Function to populate the city dropdown based on the selected state
-        function populateCityDropdown(state) {
-            const cityDropdown = document.getElementById('city');
-            cityDropdown.innerHTML = ''; // Clear existing options
-
-            if (stateCityMap[state]) {
-                stateCityMap[state].forEach(city => {
-                    const option = document.createElement('option');
-                    option.value = city;
-                    option.text = city;
-                    cityDropdown.add(option);
-                });
-            }
-        }
+        // Load rep name and email from cookies if available
+        document.getElementById('rep-name').value = getCookie('repName') || '';
+        document.getElementById('rep-email').value = getCookie('repEmail') || '';
 
         // Handle form submission
-        document.getElementById('rfp-form').addEventListener('submit', function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', { // Input the actual web app URL
+
+            // Save rep name and email to cookies
+            setCookie('repName', document.getElementById('rep-name').value, 7);
+            setCookie('repEmail', document.getElementById('rep-email').value, 7);
+
+            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
                 if (response.ok) {
-                    window.location.href = 'confirmation.html'; // Redirect to confirmation page
+                    // Hide submit button and show new buttons
+                    submitBtn.classList.add('hidden');
+                    newBtn.classList.remove('hidden');
+                    dashboardBtn.classList.remove('hidden');
                 } else {
                     return response.text();
                 }
@@ -299,8 +109,46 @@ Index.html
             })
             .catch(error => console.error('Error:', error));
         });
+
+        // Handle "Submit another" button click
+        newBtn.addEventListener('click', function() {
+            form.reset();
+            document.getElementById('rep-name').value = getCookie('repName') || '';
+            document.getElementById('rep-email').value = getCookie('repEmail') || '';
+            submitBtn.classList.remove('hidden');
+            newBtn.classList.add('hidden');
+            dashboardBtn.classList.add('hidden');
+        });
+
+        // Handle "Dashboard" button click
+        dashboardBtn.addEventListener('click', function() {
+            window.location.href = 'dashboard.html';
+        });
+
+        // Functions to manage cookies
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
     });
 </script>
 
 </body>
 </html>
+
