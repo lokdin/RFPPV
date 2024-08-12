@@ -71,12 +71,8 @@
         <input type="text" id="company-name" name="companyName" required>
     </div>
     <div class="form-group">
-        <label for="company-email">Email <span class="required">*</span> <span class="optional">(Phone or Email required for tracking)</span></label>
+        <label for="company-email">Email <span class="required">*</span> <span class="optional">(Email required for tracking)</span></label>
         <input type="email" id="company-email" name="companyEmail">
-    </div>
-    <div class="form-group">
-        <label for="company-phone">Phone <span class="required">*</span> <span class="optional">(Phone or Email required for tracking)</span></label>
-        <input type="text" id="company-phone" name="companyPhone">
     </div>
     <div class="form-group">
         <label for="company-address">Company Address <span class="required">*</span></label>
@@ -290,7 +286,7 @@
         document.getElementById('rfp-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(this);
-            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', { // Input the actual web app URL
+            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', { // Input the web app URL for POST
                 method: 'POST',
                 body: formData
             })
