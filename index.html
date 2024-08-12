@@ -47,6 +47,38 @@
         .hidden {
             display: none;
         }
+            /* Style for Select2 container */
+    .select2-container--default .select2-selection--single {
+        background-color: #212120; /* Dark background */
+        color: #fff; /* White text */
+        border: 1px solid #333; /* Border color */
+        border-radius: 4px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #fff; /* White text inside the selected item */
+    }
+
+    /* Style for the dropdown list */
+    .select2-container--default .select2-results__options {
+        background-color: #212120; /* Dark background */
+        color: #fff; /* White text */
+    }
+
+    .select2-container--default .select2-results__option {
+        color: #fff; /* White text for each option */
+    }
+
+    .select2-container--default .select2-results__option--highlighted {
+        background-color: #333; /* Darker background for highlighted option */
+        color: #fff; /* White text for highlighted option */
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        top: 50%;
+        transform: translateY(-50%);
+        border-color: #333 transparent transparent transparent; /* Arrow color */
+    }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
