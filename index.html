@@ -159,9 +159,9 @@
     </div>
 
     <!-- Hidden fields for IDs -->
-    <input type="hidden" id="rep-id" name="repId">
-    <input type="hidden" id="company-id" name="companyId">
-    <input type="hidden" id="rfp-id" name="rfpId">
+    <input type="text" id="rep-id" name="repId">
+    <input type="text" id="company-id" name="companyId">
+    <input type="text" id="rfp-id" name="rfpId">
 
     <button type="submit" class="btn-submit">Submit</button>
 </form>
@@ -276,18 +276,17 @@
 
                 const result = await response.text();
 
-                if (result === 'Success') {
-                    alert('RFP submitted successfully!');
-                    window.location.href = 'confirmation.html?message=RFP Received';
-                } else {
-                    alert('Failed to submit RFP. Please try again.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred while submitting the RFP.');
-            }
-        });
-    });
+        if (result === 'Success') {
+            alert('RFP submitted successfully!');
+            window.location.href = 'confirmation.html?message=RFP Received';
+        } else {
+            alert('Failed to submit RFP. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while submitting the RFP.');
+    }
+});
 </script>
 
 </body>
