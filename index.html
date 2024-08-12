@@ -48,6 +48,7 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 </head>
 <body>
 
@@ -71,8 +72,12 @@
         <input type="text" id="company-name" name="companyName" required>
     </div>
     <div class="form-group">
-        <label for="company-email">Email <span class="required">*</span> <span class="optional">(Email required for tracking)</span></label>
+        <label for="company-email">Email <span class="required">*</span> <span class="optional">(Phone or Email required for tracking)</span></label>
         <input type="email" id="company-email" name="companyEmail">
+    </div>
+    <div class="form-group">
+        <label for="company-phone">Phone <span class="required">*</span> <span class="optional">(Phone or Email required for tracking)</span></label>
+        <input type="text" id="company-phone" name="companyPhone">
     </div>
     <div class="form-group">
         <label for="company-address">Company Address <span class="required">*</span></label>
@@ -131,9 +136,7 @@
             <option value="Wisconsin">Wisconsin</option>
             <option value="Wyoming">Wyoming</option>
 <!-- City Options will be populated dynamically -->
-        </select>
-    </div>
-    <div class="form-group">
+<div class="form-group">
         <label for="city">Nearest City <span class="required">*</span></label>
         <select id="city" name="city" required>
         </select>
@@ -200,14 +203,20 @@
     <div class="form-group">
         <label for="rfp-delivery-date">RFP Delivery Date</label>
         <input type="datetime-local" 
-               id="rfp-delivery-date1" 
+               id="rfp-delivery-date" 
+               name="rfpDeliveryDate" 
                min="2024-01-01T00:00" 
                max="2050-12-31T23:59" 
                step="1">
     </div>
-    <button type="submit" class="btn-submitform">Submit</button>
 
- </div>
+    <!-- Hidden fields for IDs -->
+    <input type="hidden" id="rep-id" name="repId">
+    <input type="hidden" id="company-id" name="companyId">
+    <input type="hidden" id="rfp-id" name="rfpId">
+
+    <button type="submit" class="btn-submit">Submit</button>
+</form>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -248,61 +257,65 @@
                 "New Hampshire", "New Jersey", "New Mexico", "New York",
                 "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
                 "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-                "Tennessee", "Texas", "Utah", "Vermont", "Virginia",
-                "Washington", "West Virginia", "Wisconsin", "Wyoming"
+                "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+                "West Virginia", "Wisconsin", "Wyoming"
             ];
 
-            const stateDropdown = document.getElementById('state');
+            const stateSelect = document.getElementById('state');
             states.forEach(state => {
                 const option = document.createElement('option');
                 option.value = state;
-                option.text = state;
-                stateDropdown.add(option);
+                option.textContent = state;
+                stateSelect.appendChild(option);
             });
 
-            // Add event listener to update cities based on selected state
-            stateDropdown.addEventListener('change', function() {
-                const selectedState = this.value;
-                populateCityDropdown(selectedState);
+            // Listen for changes on the state dropdown to populate the city dropdown
+            stateSelect.addEventListener('change', function() {
+                populateCityDropdown(this.value);
             });
         }
 
         // Function to populate the city dropdown based on the selected state
         function populateCityDropdown(state) {
-            const cityDropdown = document.getElementById('city');
-            cityDropdown.innerHTML = ''; // Clear existing options
+            const citySelect = document.getElementById('city');
+            citySelect.innerHTML = ''; // Clear previous options
 
             if (stateCityMap[state]) {
                 stateCityMap[state].forEach(city => {
                     const option = document.createElement('option');
                     option.value = city;
-                    option.text = city;
-                    cityDropdown.add(option);
+                    option.textContent = city;
+                    citySelect.appendChild(option);
                 });
             }
         }
 
-        // Handle form submission
-        document.getElementById('rfp-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            fetch('https://script.google.com/macros/s/AKfycby6d5uneehm3a29RqscR3P-Nc6t1fF9pvSRfHHXYz-cuL3gMJ1ZdoiyfQ8pudcIDArc/exec', { // Input the web app URL for POST
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = 'confirmation.html'; // Redirect to confirmation page
-                } else {
-                    return response.text();
-                }
-            })
-            .then(data => {
-                if (data) {
-                    alert('Error: ' + data);
-                }
-            })
-            .catch(error => console.error('Error:', error));
+        // Function to generate a hash from input strings
+        function generateHash(input) {
+            return CryptoJS.MD5(input).toString(CryptoJS.enc.Hex).substring(0, 5);
+        }
+
+        // Listen for form submission
+        const form = document.getElementById('rfp-form');
+        form.addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Get the rep name and email
+            const repName = document.getElementById('rep-name').value;
+            const repEmail = document.getElementById('rep-email').value;
+
+            // Get the company name and email
+            const companyName = document.getElementById('company-name').value;
+            const companyEmail = document.getElementById('company-email').value;
+
+            // Generate and set the IDs
+            document.getElementById('rep-id').value = generateHash(repName + repEmail);
+            document.getElementById('company-id').value = 'C' + generateHash(companyName + companyEmail);
+            document.getElementById('rfp-id').value = 'R' + generateHash(Date.now().toString());
+
+            // Submit the form programmatically after setting the IDs
+            this.submit();
         });
     });
 </script>
